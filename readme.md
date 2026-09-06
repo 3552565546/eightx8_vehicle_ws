@@ -1,5 +1,7 @@
 # 8×8 八轮差速无人车 Gazebo 仿真项目
 
+<img width="480" height="271" alt="演示片段" src="https://github.com/user-attachments/assets/f7a9f7d4-e804-4271-8f24-8f2b12761b7e" />
+
 ## 1. 项目简介
 
 本项目基于 **ROS Noetic + Gazebo** 搭建了一辆 **8×8 八轮差速驱动（Skid-Steer）无人车**：
