@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="dazuoye_kinects">
+  
+  <xacro:macro name="kinect" params="name mesh_file">
+    <link name="${name}">
+      <inertial>
+        <origin xyz="-5.5511E-17 0 -0.01" rpy="0 0 0" />
+        <mass value="0.012" />
+        <inertia ixx="8E-07" ixy="-8.3178E-23" ixz="-3.6878E-23" iyy="1.3E-06" iyz="2.3355E-39" izz="1.3E-06" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://dazuoye/meshes/${mesh_file}" />
+        </geometry>
+        <material name="">
+          <color rgba="0.79216 0.81961 0.93333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://dazuoye/meshes/${mesh_file}" />
+        </geometry>
+      </collision>
+    </link>
+  </xacro:macro>
+
+  <!-- 定义Kinect传感器 -->
+  <xacro:kinect name="kinect1" mesh_file="kinect1.STL"/>
+  <xacro:kinect name="kinect2" mesh_file="kinect2.STL"/>
+
+  <!-- Kinect关节 -->
+  <joint name="basekinect1" type="fixed">
+    <origin xyz="-0.011224 -0.10691 0.21753" rpy="0 0 3.1416" />
+    <parent link="base_link" />
+    <child link="kinect1" />
+    <axis xyz="0 0 0" />
+  </joint>
+  
+  <joint name="basekinect2" type="fixed">
+    <origin xyz="0.35971 0.002513 0.18545" rpy="0.03416 0 1.5708" />
+    <parent link="base_link" />
+    <child link="kinect2" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+</robot>

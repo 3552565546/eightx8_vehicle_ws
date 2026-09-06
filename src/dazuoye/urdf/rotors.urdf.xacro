@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="dazuoye_rotors">
+  
+  <xacro:macro name="rotor" params="name mesh_file">
+    <link name="${name}">
+      <inertial>
+        <origin xyz="4.92247885341968E-07 8.92687138320802E-07 -0.0238299573571413" rpy="0 0 0" />
+        <mass value="0.00242869019068173" />
+        <inertia ixx="2.38168822449135E-07" ixy="-1.03335169620103E-11" ixz="3.41439680017416E-11" iyy="2.38156779310724E-07" iyz="5.83744762677936E-11" izz="1.69923583745475E-07" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://dazuoye/meshes/${mesh_file}" />
+        </geometry>
+        <material name="">
+          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://dazuoye/meshes/${mesh_file}" />
+        </geometry>
+      </collision>
+    </link>
+  </xacro:macro>
+
+  <!-- 定义转子 -->
+  <xacro:rotor name="rotor1" mesh_file="rotor1.STL"/>
+  <xacro:rotor name="rotor2" mesh_file="rotor2.STL"/>
+
+  <!-- 转子关节 -->
+  <joint name="baserotor1" type="continuous">
+    <origin xyz="-0.36115 0.098652 0.086928" rpy="-1.5708 1.4381 -1.5708" />
+    <parent link="base_link" />
+    <child link="rotor1" />
+    <axis xyz="0 0 1" />
+  </joint>
+  
+  <joint name="baserotor2" type="continuous">
+    <origin xyz="-0.36141 -0.098469 0.086928" rpy="1.5708 0.49836 -1.5708" />
+    <parent link="base_link" />
+    <child link="rotor2" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+</robot>

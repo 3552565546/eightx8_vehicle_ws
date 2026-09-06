@@ -1,0 +1,56 @@
+<launch>
+  <!-- 设置要加载的世界文件 -->
+  <arg name="world_name" default="$(find dazuoye)/worlds/empty.world"/>
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  
+  <!-- 加载机器人描述 -->
+  <param
+    name="robot_description"
+    command="$(find xacro)/xacro '$(find dazuoye)/urdf/dazuoye_main.urdf.xacro'" />
+  
+  <!-- 设置使用仿真时间 -->
+  <param name="use_sim_time" value="$(arg use_sim_time)" />
+  
+  <!-- 发布 base_footprint 到 base_link 的静态变换 -->
+  <node name="base_footprint_to_base_link" pkg="tf" type="static_transform_publisher"
+        args="0 0 0 0 0 0 base_footprint base_link 10" />
+  
+  <!-- 发布 map 到 odom 的静态变换 -->
+  <node name="map_to_odom" pkg="tf" type="static_transform_publisher"
+        args="0 0 0 0 0 0 map odom 10" />
+
+  <!-- 启动 Gazebo 并加载指定的世界 -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world_name)" />
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)" />
+    <arg name="use_sim_time" value="$(arg use_sim_time)" />
+    <arg name="headless" value="$(arg headless)" />
+  </include>
+  
+  <node
+    name="spawn_model"
+    pkg="gazebo_ros"
+    type="spawn_model"
+    args="-urdf -param robot_description -model dazuoye"
+    output="screen" />
+  
+  <node
+    name="fake_joint_calibration"
+    pkg="rostopic"
+    type="rostopic"
+    args="pub /calibrated std_msgs/Bool true" />
+    
+  <!-- 在 Gazebo 仿真中，使用 Gazebo 的关节状态 -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+        output="screen">
+    <param name="publish_frequency" type="double" value="30.0" />
+    <param name="use_tf_static" type="bool" value="true" />
+    <remap from="/joint_states" to="/gazebo/joint_states" />
+  </node>
+</launch>

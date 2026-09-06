@@ -1,0 +1,14 @@
+<launch>
+    <!-- 启动rviz -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find dazuoye)/rviz/nav.rviz"/>
+    <node pkg="joint_state_publisher" name="joint_state_publisher" type="joint_state_publisher" />
+    <node pkg="robot_state_publisher" name="robot_state_publisher" type="robot_state_publisher" />
+    <!-- 地图服务 -->
+    <include file="$(find dazuoye)/launch/map_load.launch" />
+    <!-- 启动AMCL节点 -->
+    <include file="$(find dazuoye)/launch/amcl.launch" />
+    <!-- 运行move_base节点 -->
+    <include file="$(find dazuoye)/launch/movebase.launch" />
+    <!-- 添加自动返回节点 -->
+     <node name="auto_return_node" pkg="dazuoye" type="auto_return_node.py" output="screen" />
+</launch>

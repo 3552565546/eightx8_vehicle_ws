@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="dazuoye_cameras">
+  
+  <xacro:macro name="camera" params="name mesh_file">
+    <link name="${name}">
+      <inertial>
+        <origin xyz="1.1102E-16 -2.7756E-17 -0.01" rpy="0 0 0" />
+        <mass value="0.008" />
+        <inertia ixx="5.3333E-07" ixy="-3.2032E-24" ixz="-1.7514E-23" iyy="5.3333E-07" iyz="2.7793E-22" izz="5.3333E-07" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://dazuoye/meshes/${mesh_file}" />
+        </geometry>
+        <material name="">
+          <color rgba="0.79216 0.81961 0.93333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://dazuoye/meshes/${mesh_file}" />
+        </geometry>
+      </collision>
+    </link>
+  </xacro:macro>
+
+  <!-- 定义所有摄像头 -->
+  <xacro:camera name="camera1" mesh_file="camera1.STL"/>
+  <xacro:camera name="camera2" mesh_file="camera2.STL"/>
+  <xacro:camera name="camera3" mesh_file="camera3.STL"/>
+  <xacro:camera name="camera4" mesh_file="camera4.STL"/>
+  <xacro:camera name="camera5" mesh_file="camera5.STL"/>
+  <xacro:camera name="camera6" mesh_file="camera6.STL"/>
+
+  <!-- 摄像头关节 -->
+  <joint name="basecamera1" type="fixed">
+    <origin xyz="0.45559 -0.11491 0.16762" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="camera1" />
+    <axis xyz="0 0 0" />
+  </joint>
+  
+  <joint name="basecamera2" type="fixed">
+    <origin xyz="0.45552 0.11509 0.16765" rpy="0 0.37998 0" />
+    <parent link="base_link" />
+    <child link="camera2" />
+    <axis xyz="0 0 0" />
+  </joint>
+  
+  <joint name="basecamera3" type="fixed">
+    <origin xyz="-0.25161 0.10928 0.21753" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="camera3" />
+    <axis xyz="0 0 0" />
+  </joint>
+  
+  <joint name="basecamera4" type="fixed">
+    <origin xyz="-0.2771 0.11527 0.01392" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="camera4" />
+    <axis xyz="0 0 0" />
+  </joint>
+  
+  <joint name="basecamera5" type="fixed">
+    <origin xyz="-0.40416 0.061899 0.21753" rpy="0 0 3.1416" />
+    <parent link="base_link" />
+    <child link="camera5" />
+    <axis xyz="0 0 0" />
+  </joint>
+  
+  <joint name="basecamera" type="fixed">
+    <origin xyz="-0.40324 -0.024933 0.21753" rpy="0 0 3.1416" />
+    <parent link="base_link" />
+    <child link="camera6" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+</robot>

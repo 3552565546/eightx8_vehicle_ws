@@ -1,0 +1,6 @@
+<launch>
+	<!-- 保存路径-->
+    <arg name="filename" value="$(find dazuoye)/map/nav" />
+    <node name="map_save" pkg="map_server" type="map_saver" args="-f $(arg filename)" />
+</launch>
+

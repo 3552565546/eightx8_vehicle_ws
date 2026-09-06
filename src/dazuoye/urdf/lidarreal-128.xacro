@@ -1,0 +1,61 @@
+<!-- 128线3D激光雷达配置 -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <gazebo reference="leida">
+    <sensor type="ray" name="velodyne_128">
+      <!-- 位姿：相对于laser_link坐标系 -->
+      <pose>0 0 0 0 0 0</pose>
+      
+      <!-- 可视化：在Gazebo中显示激光射线 -->
+      <visualize>true</visualize>
+      
+      <!-- 更新频率：10Hz -->
+      <update_rate>10</update_rate>
+      
+      <ray>
+        <scan>
+          <horizontal>
+            <!-- 水平方向：1024个采样点，约0.35°角分辨率 -->
+            <samples>1024</samples>
+            <resolution>1</resolution>
+            <!-- 360° 全方位扫描 -->
+            <min_angle>-3.14159</min_angle>
+            <max_angle>3.14159</max_angle>
+          </horizontal>
+          <vertical>
+            <!-- 128线垂直扫描 -->
+            <samples>128</samples>
+            <resolution>1</resolution>
+            <!-- 垂直视角：-25° 到 +15°，总计40° -->
+            <min_angle>-0.436332</min_angle>  <!-- -25° -->
+            <max_angle>0.261799</max_angle>   <!-- +15° -->
+          </vertical>
+        </scan>
+        
+        <range>
+          <!-- 探测范围：0.1米 到 300米 -->
+          <min>0.10</min>
+          <max>300.0</max>
+          <!-- 距离分辨率：1厘米 -->
+          <resolution>0.01</resolution>
+        </range>
+        
+        <!-- 高斯噪声，模拟真实传感器误差 -->
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      
+      <!-- Gazebo ROS 3D激光雷达插件 -->
+      <plugin name="gazebo_ros_velodyne_controller" filename="libgazebo_ros_velodyne_laser.so">
+        <!-- 发布点云数据到 /velodyne_points 话题 -->
+        <topicName>/velodyne_points</topicName>
+        <!-- 使用 laser_link 坐标系 -->
+        <frameName>leida</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+</robot>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="dazuoye" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- 包含所有部件 -->
+  <xacro:include filename="$(find dazuoye)/urdf/base.urdf.xacro" />
+  <xacro:include filename="$(find dazuoye)/urdf/wheels.urdf.xacro" />
+  <xacro:include filename="$(find dazuoye)/urdf/rotors.urdf.xacro" />
+  <xacro:include filename="$(find dazuoye)/urdf/cameras.urdf.xacro" />
+  <xacro:include filename="$(find dazuoye)/urdf/kinects.urdf.xacro" />
+  <xacro:include filename="$(find dazuoye)/urdf/leida.urdf.xacro" />
+  <xacro:include filename="$(find dazuoye)/urdf/lidarreal.xacro" />
+  <xacro:include filename="$(find dazuoye)/urdf/control.xacro" />
+  <xacro:include filename="$(find dazuoye)/urdf/camerareal.xacro" />
+  <xacro:include filename="$(find dazuoye)/urdf/kinectreal.xacro" />
+  <!--
+  <gazebo>
+  <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
+    <alwaysOn>true</alwaysOn>
+    <updateRate>100.0</updateRate>
+    <bodyName>base_link</bodyName>
+    <topicName>base_pose_ground_truth</topicName>
+    <gaussianNoise>0.0</gaussianNoise>
+    <frameName>world</frameName>
+    <xyzOffsets>0 0 0</xyzOffsets>
+    <rpyOffsets>0 0 0</rpyOffsets>
+  </plugin>
+</gazebo>
+-->
+</robot>

@@ -1,0 +1,2 @@
+dazuoye
+-DCATKIN_DEVEL_PREFIX=/home/bt/eightx8_vehicle_ws/devel -DCMAKE_INSTALL_PREFIX=/home/bt/eightx8_vehicle_ws/install -G Unix Makefiles

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="dazuoye_wheels">
+  
+  <xacro:macro name="wheel" params="name mesh_file">
+    <link name="${name}">
+      <inertial>
+        <origin xyz="-1.0644818360106E-12 0.0286730516007033 1.08304476498233E-11" rpy="0 0 0" />
+        <mass value="0.714580930694788" />
+        <inertia ixx="0.00108598655804473" ixy="-4.550163687934E-14" ixz="-4.83965814925678E-14" iyy="0.00187252944910504" iyz="-2.81421321092362E-13" izz="0.00108598655845284" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://dazuoye/meshes/${mesh_file}" />
+        </geometry>
+        <material name="">
+          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://dazuoye/meshes/${mesh_file}" />
+        </geometry>
+      </collision>
+    </link>
+  </xacro:macro>
+
+  <!-- 定义所有车轮 -->
+  <xacro:wheel name="wheel1" mesh_file="wheel1.STL"/>
+  <xacro:wheel name="wheel2" mesh_file="wheel2.STL"/>
+  <xacro:wheel name="wheel3" mesh_file="wheel3.STL"/>
+  <xacro:wheel name="wheel4" mesh_file="wheel4.STL"/>
+  <xacro:wheel name="wheel5" mesh_file="wheel5.STL"/>
+  <xacro:wheel name="wheel6" mesh_file="wheel6.STL"/>
+  <xacro:wheel name="wheel7" mesh_file="wheel7.STL"/>
+  <xacro:wheel name="wheel8" mesh_file="wheel8.STL"/>
+
+  <!-- 车轮关节 -->
+  <joint name="basewheel1" type="continuous">
+    <origin xyz="0.26854 0.14264 0.01392" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel1" />
+    <axis xyz="0 1 0" />
+  </joint>
+  
+  <joint name="basewheel2" type="continuous">
+    <origin xyz="0.082902 0.14264 0.01392" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel2" />
+    <axis xyz="0 1 0" />
+  </joint>
+  
+  <joint name="basewheel3" type="continuous">
+    <origin xyz="-0.09146 0.14264 0.01392" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel3" />
+    <axis xyz="0 1 0" />
+  </joint>
+  
+  <joint name="basewheel4" type="continuous">
+    <origin xyz="-0.27710 0.14264 0.01392" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel4" />
+    <axis xyz="0 1 0" />
+  </joint>
+  
+  <joint name="basewheel5" type="continuous">
+    <origin xyz="0.26854 -0.14264 0.01392" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel5" />
+    <axis xyz="0 1 0" />
+  </joint>
+  
+  <joint name="basewheel6" type="continuous">
+    <origin xyz="0.082902 -0.14264 0.01392" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel6" />
+    <axis xyz="0 1 0" />
+  </joint>
+  
+  <joint name="basewheel7" type="continuous">
+    <origin xyz="-0.091457 -0.14264 0.01392" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel7" />
+    <axis xyz="0 1 0" />
+  </joint>
+  
+  <joint name="basewheel8" type="continuous">
+    <origin xyz="-0.2771 -0.14264 0.01392" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel8" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+</robot>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="dazuoye_base">
+  
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.00175895322819281 -0.000186490435764575 0.115995062248732" rpy="0 0 0" />
+      <mass value="40.5192970572116" />
+      <inertia ixx="0.418864833638296" ixy="0.00162028052461188" ixz="0.0429721576576123" iyy="2.27038164283973" iyz="0.000430380682244321" izz="2.46685025651348" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://dazuoye/meshes/base_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://dazuoye/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+</robot>
