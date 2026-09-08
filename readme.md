@@ -1,8 +1,6 @@
 # 8×8 八轮差速无人车 Gazebo 仿真项目
 
-
-
-https://github.com/user-attachments/assets/09b9768a-9705-4520-8134-a47107acc0f9
+<img width="480" height="271" alt="展示视频-compressed" src="https://github.com/user-attachments/assets/476b98dd-b976-42c3-a04f-cbf3ffc5520c" />
 
 
 
